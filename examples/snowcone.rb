@@ -35,7 +35,7 @@ class Snowcone < Struct.new(:state, :flavors)
                     :thrown_away,
                ])
   shout_observers([
-                   Accounting,
+                   :Accounting,
                   ])
   def initialize
     @state = :empty

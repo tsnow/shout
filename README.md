@@ -42,7 +42,7 @@ class Snowcone < Struct.new(:state, :flavors)
                     ])
   # List your observing classes. This ensures that callbacks run in 
   # a deterministic order across all environments.
-  shout_observers(Accounting)
+  shout_observers([:Accounting])
 
   # Then in your instances, use the #run_callbacks method
   # to notify Listeners that an event has occurred.

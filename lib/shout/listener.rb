@@ -25,9 +25,7 @@ module Shout
       def observes=(observes)
         @observes = observes
         valid_observable?
-        unless observes_class.observer_classes.include?(self)
-          raise ArgumentError.new("#{self}: Please call #{observes}.register_observers([#{self}]) to use me as an observer. This is done to ensure determinism in the load order in development, test, and production environments.")
-        end
+        observes_class.observer_class_names_check.push(self.name.to_sym)
       end
       # Registers a callback which will be executed when the
       # observes_class's instances call run_callbacks(name).
@@ -44,7 +42,7 @@ module Shout
       attr_reader :observes
       attr_accessor :callbacks
       def observes_class
-        Kernel.const_get(self.observes)
+        Shout.constantize(self.observes.to_s)
       rescue NameError => e
         nil
       end
