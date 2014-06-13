@@ -1,6 +1,7 @@
 # Shout
 
-TODO: Write a gem description
+A class-level observer pattern for ActiveRecord.
+
 
 ## Installation
 

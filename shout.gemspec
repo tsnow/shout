@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "shout"
   spec.version       = Shout::VERSION
   spec.authors       = ["Tim Snowhite"]
-  spec.email         = ["tsnowhite@taximagic.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.email         = ["tim@snowhitesolutions.com"]
+  spec.description   = %q{A class-level observer pattern for ActiveRecord.}
+  spec.summary       = %q{Publish and subscribe to events on your models.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
