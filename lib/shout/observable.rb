@@ -12,6 +12,12 @@ module Shout
     def run_shout_callbacks(event, *params)
                                       # HMMM: not sure how I feel
       self.class.load_observers(self) # about this. See #idemp_observer.
+      self.notify_shout_observers(event, *params)
+    end
+    def notify_shout_observers(event, *params)
+      self.shout_observer_list.each do |k,i|
+        i.update_with_shout_event(event, *params)
+      end
     end
     
     ## Internal Methods
@@ -19,15 +25,15 @@ module Shout
       mod.send(:extend, ClassMethods)
     end
     
-    attr_accessor :observer_list
+    attr_accessor :shout_observer_list
     
     # This is done this way because I want to be able to #new these
     # up at the time an event comes in, rather than using and
     # after_initialize callback.
     def idemp_observer(k,i)
-      self.observer_list ||= []
-      return if self.observer_list.assoc(k)
-      self.observer_list.push([i.class, i])
+      self.shout_observer_list ||= []
+      return if self.shout_observer_list.assoc(k)
+      self.shout_observer_list.push([i.class, i])
     end
   end
   
