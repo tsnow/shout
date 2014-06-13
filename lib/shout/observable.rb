@@ -6,10 +6,10 @@ module Shout
     
     # Really this is for clarity until everyone is cool with the implementation.
     def self.run_callbacks(instance,event,*params)
-      instance.run_callbacks(event,*params)
+      instance.run_shout_callbacks(event,*params)
     end
     
-    def run_callbacks(event, *params)
+    def run_shout_callbacks(event, *params)
                                       # HMMM: not sure how I feel
       self.class.load_observers(self) # about this. See #idemp_observer.
     end

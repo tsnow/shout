@@ -43,14 +43,14 @@ class Snowcone < Struct.new(:state, :flavors)
   end
   def flavor(flavor)
     @flavors.push(flavor)
-    self.run_callbacks(:flavored, flavor)
+    self.run_shout_callbacks(:flavored, flavor)
   end
   def state!(event)
-    self.run_callbacks(event)
+    self.run_shout_callbacks(event)
     self.state = event
   end
   def purchase(cost)
-    self.run_callbacks(:purchased, cost)
+    self.run_shout_callbacks(:purchased, cost)
     self.state= :purchased
   end
 end

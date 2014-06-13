@@ -13,7 +13,7 @@ module Shout
       mod.callbacks = []
     end
 
-    def update_with_event(name, *params)
+    def update_with_shout_event(name, *params)
         a=self.class.callbacks_for_event(name)
         a.map{|meth| self.send(meth,*params) }
     end
@@ -36,8 +36,8 @@ module Shout
         callbacks.push([name,method])
       end
       def test_event(name, instance, *params)
-        listener = new(instance,params)
-        listener.update_with_event(name,*params)
+        listener = new(instance)
+        listener.update_with_shout_event(name, *params)
       end
 
       ## Internal Methods

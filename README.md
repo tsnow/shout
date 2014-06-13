@@ -47,7 +47,7 @@ class Snowcone < Struct.new(:state, :flavors)
   # Then in your instances, use the #run_callbacks method
   # to notify Listeners that an event has occurred.
   def state!(event)
-      self.run_callbacks(event)
+      self.run_shout_callbacks(event)
   end
 end
 ```
