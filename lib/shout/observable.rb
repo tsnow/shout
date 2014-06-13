@@ -12,13 +12,10 @@ module Shout
     def run_callbacks(event, *params)
                                       # HMMM: not sure how I feel
       self.class.load_observers(self) # about this. See #idemp_observer.
-      self.changed # ::Observable
-      self.notify_observers(event, *params) # ::Observable
     end
     
     ## Internal Methods
     def self.included(mod)
-      mod.send(:include, ::Observable) # ::Observable
       mod.send(:extend, ClassMethods)
     end
     
@@ -31,7 +28,6 @@ module Shout
       self.observer_list ||= []
       return if self.observer_list.assoc(k)
       self.observer_list.push([i.class, i])
-      self.add_observer(i, :update_with_event) # ::Observable
     end
   end
   
